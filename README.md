@@ -98,7 +98,7 @@ import abi from './Transactions.json'; // File genereated after deploying the co
 export const contractABI = abi.abi;
 export const contractAddress = '0xa49b....5679e'; // Output after deploying the smart contract
 ```
-- As you remember after [deploying the Smart Contract](#2-hardhat-deployement-these-steps-are-already-done) we receive the **Smart Contract address** in our console and get a `Transactions.json` file in our new genereted `artifacts` folder which is under `.gitignore`. As I mentioned after generating that we bring it into our **client** folder and start using it in our React app.
+- As you remember after [deploying the Smart Contract](#2-hardhat-deployement-these-steps-are-already-done) we receive the **Smart Contract address** in our console and get a `Transactions.json` file in our new genereted `artifacts` folder which is under `.gitignore`. As I mentioned after generating that we bring it into our `client` folder and start using it in our React app.
 - As you see we need some `abi` property from that file. If the file was generated successfully there shouldn't be any problems with importing that property.
 - Meanwhile explore [`constants.example.js`](./client/src/utils/constants.example.js) file.
 
