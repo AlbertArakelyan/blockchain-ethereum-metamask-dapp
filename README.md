@@ -85,7 +85,7 @@ All our main Web 3.0 logic is written in [`TransactionContext.jsx`](./client/src
 
 Let's go over each function and understand what they do for making our ethereum transactions.
 
-**Just one imporatn detail, `ethers` library plays the biggest role for making transactions and connecting MetaMask to our app.**
+**Just one important detail, `ethers` library plays the biggest role for making transactions and connecting MetaMask to our app.**
 ```bash
 npm install ethers
 ```
