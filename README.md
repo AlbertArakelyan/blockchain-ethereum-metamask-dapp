@@ -147,7 +147,7 @@ This is basically how the web 3.0 app is set up, how the Smart Contract has been
 
 ## 🙏 Contribution
 - If you find something incorrect or lacking feel free to fork the repo correct it and open a pull request I will be happy for that ^^
-- And also if you have more expertise in Web 3.0 world than feel free to share it with us, we will highly appreciate it ^^
+- And also if you have more expertise in Web 3.0 world than feel free to share it with us in our [discussions](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/discussions/2), we will highly appreciate it ^^
 
 ---
 
