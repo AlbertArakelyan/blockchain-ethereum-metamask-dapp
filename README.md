@@ -75,7 +75,7 @@ npx hardhat run scripts/deploy.js --network sepolia
 - As an output we receive the address of our contract in Alchemy, which is a some hex number like `0x4ef34....4a3f`. This address will be used in our **React app** in future, means on client side.
 - And also et will generate a new `artifacts` directory with a few files (which are under .gitignore). So we will need [`Transaction.json`](./smart_contract/artifacts/contracts/Transactions.sol/Transactions.json) file from `smart_contract/artifacts/contracts/Transactions.sol/` directory. In future we will use an information from this file in our client. So we will simply need to copy it into [`client/src/utils`](./client/src/utils/) directory.
 
-### React app set up
+### 3. React app set up
 Instead of React instalaltion and running process we will deep dive into the functions that were used for **Web 3.0**, as it is a simple [React](https://react.dev/) app set up with [Vite](https://vitejs.dev/) through
 ```bash
 npm init vite@latest
