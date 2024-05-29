@@ -13,7 +13,7 @@
 </p>
 
 ## 📦 Installation
-Ensure you have higher than 20 `node.js` version, we used `v20.13.1`.
+Ensure you have higher than 20 `node.js` version, we used `v20.13.1`, npm `v10.5.2`, yarn `v1.22.22`.
 
 ### 1. [Hardhat](https://hardhat.org/) set up (this step is already done)
 - Create a new directory called `smart_contract` in the root of your project
@@ -90,7 +90,7 @@ Let's go over each function and understand what they do for making our ethereum 
 npm install ethers
 ```
 
-### 1. `constants.js`
+### 3.1. `constants.js`
 - As you can see this file is missing in our files, because it contains a sensetive data and I put it under `.gitignore`. However it should look like somthing like this.
 ```js
 import abi from './Transactions.json'; // File genereated after deploying the contract
@@ -102,37 +102,37 @@ export const contractAddress = '0xa49b....5679e'; // Output after deploying the 
 - As you see we need some `abi` property from that file. If the file was generated successfully there shouldn't be any problems with importing that property.
 - Meanwhile explore [`constants.example.js`](./client/src/utils/constants.example.js) file.
 
-### 2. `ethereum` object in `window`
+### 3.2. `ethereum` object in `window`
 - After installing **Metamask** we always have access to `ethereum` via `window.ethereum`.
 - We used it in [this](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/client/src/context/TransactionContext.jsx#L6) way in our `TransactionContext.jsx` file.
 
 **I will leave referrences to all functions and coe pieces that you can check it right in Github.*
 
-### 3. `getEthereumContract` function
+### 3.3. `getEthereumContract` function
 - [getEthereumContract](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/client/src/context/TransactionContext.jsx#L8-L14) is the first function that we declared. Which is basically for getting deployed smart contract that we created through its `address` and `abi` which we in [`constants.js`](./client/src/utils/constants.example.js) and import in [this](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/client/src/context/TransactionContext.jsx#L4) way.
 - Excpet for `address` and `abi` we use `ethereum` [here](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/client/src/context/TransactionContext.jsx#L9-L10) for getting some providers.
 - And also `etheres` library for getting our contract with its `Contract` library using `address`, `abi` and `signer` from `ethereum` `BrowserProvider` instance (for this we also use `ethers`). We fetch our contract in [this](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/client/src/context/TransactionContext.jsx#L11-L13) way.
 - In `transactionContract` is available any method that we declared in our Smart Contract file which [`Transactions.sol`](./smart_contract/contracts/Transactions.sol).
 
-### 4. `getAllTransactions` function
+### 3.4. `getAllTransactions` function
 - [`getAllTransactions`](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/client/src/context/TransactionContext.jsx#L43-L70) is method decalred in our Smart Contract, you can check [here](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/smart_contract/contracts/Transactions.sol#L28-L30).
 - This function gets simply all transactions transforms it a little and pushes into our state for transactions.
 - *Note: All transactions are kept in the appropriate field [declared](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/smart_contract/contracts/Transactions.sol#L28-L30) in Smart Contract and typed as [TransferStruct struct](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/smart_contract/contracts/Transactions.sol#L10-L17).*
 
-### 5. `checkIfWalltedConnected` function
+### 3.5. `checkIfWalltedConnected` function
 - [`checkIfWalltedConnected`](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/client/src/context/TransactionContext.jsx#L72-L91) function simply checks if we connected our MetaMask wallet to the app or not.
 - Firstly it checks if MetaMask is installed or not by [checking](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/client/src/context/TransactionContext.jsx#L74-L76) if there is `ethereum` object in `window`.
 - After that with an appropriate request it [checks](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/client/src/context/TransactionContext.jsx#L74-L76) if there is a connected account or not. If the account doesn't exist it simply alerts to connect it.
 - *Note: if the website has functionality related to **MetaMask** it should provide a proper [Connect](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/client/src/components/Welcome.jsx#L47-L55) button.*
 
-### 6. `checkIfTransactionsExist` function
+### 3.6. `checkIfTransactionsExist` function
 - [`checkIfTransactionsExist`](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/client/src/context/TransactionContext.jsx#L93-L102) function simply checks if there are any transactions by checking their count through [`getTransactionCount`](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/smart_contract/contracts/Transactions.sol#L32-L34) method declared in our SMart Contract.
 - On [this](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/client/src/context/TransactionContext.jsx#L98) line we convert it into a string and put a `+` in front of it because the returned value is type of `bigInt`.
 
-### 7. `connectWallet` function
+### 3.7. `connectWallet` function
 - [`connectWallet`](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/client/src/context/TransactionContext.jsx#L104-L116) function simply does a request for connecting our app to **MetaMask**. Which returns an array of wallet addresses. As we have only one account the first is ours and we simply [set](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/client/src/context/TransactionContext.jsx#L112) it to our state.
 
-### 8. `sendTransaction` function
+### 3.8. `sendTransaction` function
 - [`sendTransaction`](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/client/src/context/TransactionContext.jsx#L118-L163) is the last function which transfer the amount of ethereum to another account, where we use both [ethereum object](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/client/src/context/TransactionContext.jsx#L118-L163) for making a request to another wallet, also [`ethers`](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/client/src/context/TransactionContext.jsx#L126) library for parcing the amount into hex value.
 - Also we use [addToBlockChain](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/client/src/context/TransactionContext.jsx#L145C57-L145C72) method for [storing](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/smart_contract/contracts/Transactions.sol#L21-L26) the transfer in our [transfers array](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/smart_contract/contracts/Transactions.sol#L19) in our Smart Contract, also we emit a [Transfer event](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/smart_contract/contracts/Transactions.sol#L25) which calls the transfer and tores it on internet, in the network's website which we use in our case **Sepolia**.
 - Notice that with [`ethereum.request`](https://github.com/AlbertArakelyan/blockchain-ethereum-metamask-dapp/blob/main/client/src/context/TransactionContext.jsx#L130-L138) we only ask user if he agrees to transfer such amount to another wallet by its address, the rest does Smart Contract by emitting the Transfer event.
